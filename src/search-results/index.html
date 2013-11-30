@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Responsive Javascript POC</title>
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../css/core.css"/>
+    <cond rel="stylesheet" data-responds-to="phone, tablet" href="../css/jqm1.4/cars.mobile.theme.css"></cond>
+    <script data-main="../js/searchResults" src="../js/lib/require/require.js"></script>
+
+</head>
+<body class='rspLoading'>
+
+    <div data-object="responsive/router" id="router" data-object-init="false" data-object-opt-home="/no-results"></div>
+    <div data-object="core/nav/header"></div>
+    <div class="content">
+        <div class="column whole listcolumn" 
+            data-object="core/layout/statefulparentmodule"
+            data-object-opt-target="srp">
+            <div class="non-list-content top">
+                <b>Vehicle Listing</b>
+            </div>
+            <div data-object="core/search/vehiclelist" id="srp"></div>
+            <div class="non-list-content bottom">
+            <a  data-object="core/nav/statefullink"
+                data-object-opt-root="../"    
+                data-object-opt-borrow="/search/:zip/:stockType/:make/:model/:year">Search Again</a>
+            </div>
+
+        </div>
+        <div class="column whole" 
+            data-object="core/layout/statefulparentmodule"
+            data-object-opt-target="vdp">
+            <div data-object="core/search/vehicledetail" id="vdp"></div>
+            <div class="non-list-content bottom">
+                <a  data-object="core/nav/statefullink"
+                    data-object-opt-route="/search/*"
+                    data-object-opt-borrow="/search/:zip/:stockType/:make/:model/:year">Back to Results</a>
+            </div>
+        </div>
+        <div data-object="responsive/statefulview" data-object-opt-route='/no-results'>
+            No results, <a href="../#!/search">please search again.</a>
+        </div>
+
+    </div>
+    <div data-object="core/nav/footer"></div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+
+.simple-overlay {
+ 
+    /* must be initially hidden */
+    display:none;
+ 	
+    /* place overlay on top of other elements */
+    z-index:10000;
+    min-width: 200px;
+    /* styling */
+    background-color:#fff;
+    border:1px solid #e1e1e1;
+ 	border-radius: 5px;
+ 	padding: 20px;
+    /* CSS3 styling for latest browsers */
+    -moz-box-shadow:0 0 90px 5px #000;
+    -webkit-box-shadow: 0 0 90px #000;
+}
+ 
+/* close button positioned on upper right corner */
+.simple-overlay .close {
+    background-image:url(images/close.png);
+    background-repeat: no-repeat;
+    position:absolute;
+    right:-14px;
+    top:-12px;
+    cursor:pointer;
+    height:28px;
+    width:28px;
+}
+
+
+.rspDesktop [data-role=header] li a,
+.rspPhone [data-role=header] li a,
+.rspTablet [data-role=header] li a   {
+	color: #fff;
+	text-decoration: none;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.rspDesktop .profile-bar {
+	font-weight: normal;
+	background-color: #3A4951;
+	text-align: right;
+	line-height: 30px;
+	height: 30px;
+}
+
+.rspDesktop .menuBackground {
+	margin: 0;
+	vertical-align: top;
+	padding: 1px;
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #772880 /*{a-bar-background-start}*/), to( #27035C /*{a-bar-background-end}*/)); /* Saf4 , Chrome */
+	background-image: -webkit-linear-gradient(left, #772880 /*{a-bar-background-start}*/, #27035C /*{a-bar-background-end}*/); /* Chrome 10 , Saf5.1  */
+	background-image:    -moz-linear-gradient(left, #772880 /*{a-bar-background-start}*/, #27035C /*{a-bar-background-end}*/); /* FF3.6 */
+	background-image:     -ms-linear-gradient(left, #772880 /*{a-bar-background-start}*/, #27035C /*{a-bar-background-end}*/); /* IE10 */
+	background-image:      -o-linear-gradient(left, #772880 /*{a-bar-background-start}*/, #27035C /*{a-bar-background-end}*/); /* Opera 11.10  */
+	background-image:         linear-gradient(left, #772880 /*{a-bar-background-start}*/, #27035C /*{a-bar-background-end}*/);
+}
+
+.rspDesktop [data-role=header] {
+	height: 110px;
+}
+
+[data-role=header] div.cars-logo {
+	width: 231px;
+	height: 100px;
+	position: absolute;
+	left: 50px;
+	top: 10px;
+	background-size: contain;
+	background-image: url(//graphics.cars.com/images/core/logo.png);
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.rspTablet [data-role=header] div.cars-logo {
+	width: 116.5px;
+	height: 50px;
+}
+
+.rspPhone [data-role=header] div.cars-logo {
+	width: 116.5px;
+	height: 50px;
+}
+
+[data-role=header] ul {
+	padding: 0px;
+}
+
+.rspDesktop .menuContainer {
+	width: 980px;
+	text-align: right;
+	margin-left: auto;
+	margin-right: auto;
+	padding-right: 20px;
+}
+.rspTablet .menuContainer {
+	width: 780px;
+	text-align: right;
+	margin-left: auto;
+	margin-right: auto;
+	padding-right: 20px;
+}
+
+.rspPhone .menuContainer {
+	text-align: right;
+	padding-right: 20px;	
+}
+
+
+/* [data-role=header] div {
+ 	text-align: right;
+ }*/
+
+[data-role=header] li {
+	list-style: none;
+	display: inline;
+
+}

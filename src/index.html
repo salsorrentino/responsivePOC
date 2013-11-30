@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Responsive Javascript POC</title>
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/core.css"/>
+    <cond rel="stylesheet" data-responds-to="phone, tablet" href="css/jqm1.4/cars.mobile.theme.css"></cond>
+    <script data-main="js/search" src="js/lib/require/require.js"></script>
+
+</head>
+<body class='rspLoading'>
+    <div data-object="responsive/router" id="router" data-object-opt-home="/search"></div>
+    <div data-object="core/nav/header"></div>
+    <div class="content">
+      <div class="column triple">
+          <div data-object="core/search/searchForm" id="searchForm"></div>
+      </div>
+      <div class="column double" data-responds-to="desktop">I am the desktop right column</div>
+      <div class="column single" data-responds-to="tablet">I am the tablet right column</div>
+    </div>
+    <div data-object="core/nav/footer"></div>
+</body>
+</html>

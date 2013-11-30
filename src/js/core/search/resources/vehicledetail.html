@@ -1,0 +1,34 @@
+<div>
+	id:{{id}} year:{{year}} make:{{make}} model:{{model}}
+	<br/>
+	{{#price}}
+		only ${{formatCurrency price}}
+	{{/price}}
+	{{^price}}
+		no price available
+	{{/price}}
+	<br/>
+	<div data-object="core/controls/controlgroup" data-object-opt-route="*" data-bind-object='tabController'>
+		<a href="#!/vehicle/detail/overview/{{id}}">Overview</a>
+		<a href="#!/vehicle/detail/offers/{{id}}">Offers</a>
+	</div>
+	<div data-object='responsive/statefulview' data-object-opt-route='/vehicle/detail/overview/:id/*'>
+		<div>
+			it's a totally awesome {{make}} {{model}}
+		</div>
+	</div>
+	<div data-object='responsive/statefulview' data-object-opt-route='/vehicle/detail/offers/:id/*'>
+		<div>
+			$1000 cash back
+		</div>
+	</div>
+	<a data-object='core/nav/statefullink'
+		data-object-opt-borrow='/vehicle/detail/:tab/:id/dialog'
+		data-object-opt-mode='replace'>Dialog</a>
+
+	<div data-object="core/controls/statefuldialog" 
+		data-object-opt-modal='true' 
+		data-object-opt-suffix='dialog'>
+        <div>Hello There {{id}} {{year}} {{make}} {{model}}</div>
+    </div>
+</div>
