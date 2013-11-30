@@ -6,31 +6,14 @@
     // },
     optimize: 'uglify',
     skipDirOptimize: true,
-    compile: {
-        options: {
-            paths: {
-                jquery: 'empty:',
-                jquerytools: 'empty:',
-                jquerymobile: 'empty:',
-                can: 'empty:',
-                moment: 'empty:'
-            }
-        }
-    },
     mainConfigFile: '../src/js/common.js',
-    // paths: {
-    //     jquery: 'lib/jquery-1.10.2.min',
-    //     jquerytools: 'lib/jquery.tools.min',
-    //     jquerymobile: 'lib/jquery.mobile-1.4.0-rc.1.min',
-    //     pathjs: 'lib/path',
-    //     can: 'lib/can.min',
-    //     text: 'lib/require/text',
-    //     object: 'lib/widget/object',
-    //     widget: 'lib/widget',
-    //     responsive: 'lib/responsive',
-    //     require: 'lib/require/require',
-    //     moment: 'lib/moment'
-    // },
+    paths: {
+        // jquery: 'empty:',
+        // jquerytools: 'empty:',
+        // jquerymobile: 'empty:',
+        // can: 'empty:',
+        // moment: 'empty:'
+    },
     dir: '../WebContent',
     modules: [
         //First set up the common build layer.
@@ -44,7 +27,6 @@
             //nested dependencies.
 
             include: [
-                      'can',
                       'text',
                       'responsive/canjswidget',
                       'responsive/page',
@@ -58,7 +40,6 @@
                       'core/util/formatter',
                       'core/controls/dialog',
                       'core/controls/statefuldialog'
-                      
                     ]
         },
 

@@ -1,3 +1,12 @@
+/*
+	deviceDetector - a very simple devive detector. uses screen width only
+	only meant as a POC. should be expanded on to be more robust.
+	must simple expand on the _detect method.
+
+	stores the device type in sessionStorage.
+	can be forced with a request parameter of 'forcedevice=phone|tablet|desktop'
+*/
+
 define(["widget/object"], function(object) {
 	var detector = function() {}
 	detector.prototype = {
