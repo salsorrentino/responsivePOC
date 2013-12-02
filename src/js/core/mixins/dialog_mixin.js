@@ -44,6 +44,10 @@ define(['jquery', 'widget/object', 'jquerytools'], function($, object) {
 				}
 				conf.closeOnClick = false;
 			}
+			if (this.domNode.overlay == null) {
+				//in case domnode was initialized withou jquerytools
+				this.domNode = $(this.domNode);
+			}
 			this.domNode.overlay(conf);
 			this._popUpCreated = true;
 		}

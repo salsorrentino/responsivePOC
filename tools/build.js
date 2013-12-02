@@ -1,17 +1,14 @@
 {
     appDir: '../src',
     baseUrl: 'js',
-    // paths: {
-    //     app: '../app'
-    // },
     optimize: 'uglify',
     skipDirOptimize: true,
     mainConfigFile: '../src/js/common.js',
     paths: {
-        // jquery: 'empty:',
-        // jquerytools: 'empty:',
-        // jquerymobile: 'empty:',
-        // can: 'empty:',
+        jquery: 'empty:',
+        jquerytools: 'empty:',
+        jquerymobile: 'empty:',
+        can: 'empty:'
         // moment: 'empty:'
     },
     dir: '../WebContent',

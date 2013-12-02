@@ -1,4 +1,4 @@
-define(['jquery', 'responsive/borrowstate', '../mixins/dialog_mixin', 'jquerytools'], function($, view, dialog_mixin) {
+define(['jquery', 'responsive/borrowstate', '../mixins/dialog_mixin'], function($, view, dialog_mixin) {
 	return view.extend([dialog_mixin], {
 		previousState: null,
 
