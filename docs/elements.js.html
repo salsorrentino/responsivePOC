@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: can/view/elements.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: can/view/elements.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*!
+ * CanJS - 2.0.0
+ * http://canjs.us/
+ * Copyright (c) 2013 Bitovi
+ * Wed, 16 Oct 2013 20:40:41 GMT
+ * Licensed MIT
+ * Includes: CanJS default build
+ * Download from: http://canjs.us/
+ */
+define(function(){
+	/**
+	 * @typedef {{}} can/view/elements.js
+	 * 
+	 * Provides helper methods for and information about the behavior
+	 * of DOM elements.
+	 */
+	var elements = {
+		tagToContentPropMap: {
+			option: "textContent" in document.createElement("option") ? "textContent" : "innerText",
+			textarea: "value"
+		},
+		/**
+		 * @property {Object.&lt;String,(String|Boolean)>} attrMap a mapping of
+		 * special attributes to their JS property. For example:
+		 * 
+		 *     "class" : "className"
+		 * 
+		 * means call element.className. And: 
+		 * 
+		 *      "checked" : true
+		 * 
+		 * means call `element.checked = true`
+		 *     
+		 */
+		attrMap: {
+			"class" : "className",
+			"value": "value",
+			"innerText" : "innerText",
+			"textContent" : "textContent",
+			"checked": true,
+			"disabled": true,
+			"readonly": true,
+			"required": true,
+			src: function(el, val){
+				if(val == null || val == ""){
+					el.removeAttribute("src")
+				} else {
+					el.setAttribute("src",val)
+				}
+			}
+		},
+		// matches the attrName of a regexp
+		attrReg: /([^\s]+)[\s]*=[\s]*/,
+		// elements whos default value we should set
+		defaultValue : ["input","textarea"],
+		// a map of parent element to child elements
+		tagMap : {
+			"": "span", 
+			table: "tbody", 
+			tr: "td",
+			ol: "li", 
+			ul: "li", 
+			tbody: "tr",
+			thead: "tr",
+			tfoot: "tr",
+			select: "option",
+			optgroup: "option"
+		},
+		// a tag's parent element
+		reverseTagMap: {
+			tr:"tbody",
+			option:"select",
+			td:"tr",
+			th:"tr",
+			li: "ul"
+		},
+		
+		getParentNode: function(el, defaultParentNode){
+			return defaultParentNode &amp;&amp; el.parentNode.nodeType === 11 ? defaultParentNode : el.parentNode;
+		},
+		// set an attribute on an element
+		setAttr: function (el, attrName, val) {
+			var tagName = el.nodeName.toString().toLowerCase(),
+				prop = elements.attrMap[attrName];
+			// if this is a special property
+			if(typeof prop === "function"){
+				prop(el, val)
+			} else if(prop === true) {
+				el[attrName]  = true;
+			} else if (prop) {
+				// set the value as true / false
+				el[prop] = val;
+				if( prop === "value" &amp;&amp; can.inArray(tagName, elements.defaultValue) >= 0 ) {
+					el.defaultValue = val;
+				}
+			} else {
+				el.setAttribute(attrName, val);
+			}
+		},
+		// gets the value of an attribute
+		getAttr: function(el, attrName){
+			// Default to a blank string for IE7/8
+			return (elements.attrMap[attrName] &amp;&amp; el[elements.attrMap[attrName]] ?
+				el[elements.attrMap[attrName]]:
+				el.getAttribute(attrName)) || '';
+		},
+		// removes the attribute
+		removeAttr: function(el, attrName){
+			var setter = elements.attrMap[attrName];
+			if(typeof prop === "function"){
+				prop(el, undefined)
+			} if( setter === true ) {
+				el[attrName] = false;
+			} else if(typeof setter === "string"){
+				el[setter] = "";
+			} else {
+				el.removeAttribute(attrName);
+			}
+		},
+		contentText: function(text){
+			if ( typeof text == 'string' ) {
+				return text;
+			}
+			// If has no value, return an empty string.
+			if ( !text &amp;&amp; text !== 0 ) {
+				return '';
+			}
+			return "" + text;
+		}
+	};
+	
+	// feature detect if setAttribute works with styles
+	(function(){
+		// feature detect if 
+		var div = document.createElement('div')
+		div.setAttribute("style","width: 5px")
+		div.setAttribute("style","width: 10px");
+		// make style use cssText
+		elements.attrMap.style = function(el, val){
+			el.style.cssText = val || ""
+		}
+	})();
+	
+	
+	return elements;
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="can.List.html">List</a></li><li><a href="can.Model.List.html">List</a></li><li><a href="can.view.html#Scanner">Scanner</a></li><li><a href="statefulview.html">statefulview</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_action">_action</a></li><li><a href="global.html#_attrs">_attrs</a></li><li><a href="global.html#_isAction">_isAction</a></li><li><a href="global.html#_shortName">_shortName</a></li><li><a href="global.html#ajaxMethods">ajaxMethods</a></li><li><a href="global.html#attributes">attributes</a></li><li><a href="global.html#cache">cache</a></li><li><a href="global.html#cached">cached</a></li><li><a href="global.html#constructor">constructor</a></li><li><a href="global.html#constructorExtends">constructorExtends</a></li><li><a href="global.html#convert">convert</a></li><li><a href="global.html#data">data</a></li><li><a href="global.html#ext">ext</a></li><li><a href="global.html#fullName">fullName</a></li><li><a href="global.html#hookups">hookups</a></li><li><a href="global.html#Mustache">Mustache</a></li><li><a href="global.html#namespace">namespace</a></li><li><a href="global.html#off">off</a></li><li><a href="global.html#on">on</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#preload">preload</a></li><li><a href="global.html#processors">processors</a></li><li><a href="global.html#push">push</a></li><li><a href="global.html#registerScript">registerScript</a></li><li><a href="global.html#registerView">registerView</a></li><li><a href="global.html#routes">routes</a></li><li><a href="global.html#scanner">scanner</a></li><li><a href="global.html#serialize">serialize</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#sub">sub</a></li><li><a href="global.html#tokenReg">tokenReg</a></li><li><a href="global.html#tokens">tokens</a></li><li><a href="global.html#transform">transform</a></li><li><a href="global.html#validationMessages">validationMessages</a></li><li><a href="global.html#xhr">xhr</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha3</a> on Mon Dec 30 2013 11:56:37 GMT-0600 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

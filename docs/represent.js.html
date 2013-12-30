@@ -1,4 +1,31 @@
-define(["jquery", "./object", "./string"], function($, jerk, stringUtil) {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: widget/represent.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: widget/represent.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>define(["jquery", "./object", "./string"], function($, jerk, stringUtil) {
 	
 	/**
 		represent 
@@ -25,7 +52,7 @@ define(["jquery", "./object", "./string"], function($, jerk, stringUtil) {
 			var renderCount = this.children.length;
 			var self = this;
 			$.each(this.children, function(index, child) {
-				if (child.isRepresentative == true && child.isRenderingComplete()) {
+				if (child.isRepresentative == true &amp;&amp; child.isRenderingComplete()) {
 					renderCount--;
 				} else if (child.isRepresentative != true) {
 					renderCount--;
@@ -33,7 +60,7 @@ define(["jquery", "./object", "./string"], function($, jerk, stringUtil) {
 			});
 
 			if (this.childRenderingComplete != true) {
-				this.childRenderingComplete = (renderCount <= 0);
+				this.childRenderingComplete = (renderCount &lt;= 0);
 			}
 			if (this.isRenderingComplete()) {
 				if (this.parent) {
@@ -49,7 +76,7 @@ define(["jquery", "./object", "./string"], function($, jerk, stringUtil) {
 		},
 		
 		isRenderingComplete: function() {
-			return this.renderingComplete && this.childRenderingComplete;
+			return this.renderingComplete &amp;&amp; this.childRenderingComplete;
 		},
 		
 		addChild: function(child) {
@@ -102,7 +129,7 @@ define(["jquery", "./object", "./string"], function($, jerk, stringUtil) {
 				var map = {};
 				var a = srcNode.attr("style").split(";");
 				
-				for (var i = 0; i < a.length; i++) {
+				for (var i = 0; i &lt; a.length; i++) {
 					var kv = a[i].split(":");
 						if (kv.length > 0) {
 							var name = $.trim(kv[0]);
@@ -175,12 +202,12 @@ define(["jquery", "./object", "./string"], function($, jerk, stringUtil) {
 		
 		destroy: function() {
 			try {
-				for (var i = 0; this._childBinds && i < this._childBinds.length; i++) {
+				for (var i = 0; this._childBinds &amp;&amp; i &lt; this._childBinds.length; i++) {
 	                this._childBinds[i].element.off(this._childBinds[i].eventName, this._childBinds[i].func);
 	            };
 	            this._clearArray(this._childBinds);
 
-				for (var i = 0; this._previouslyBound && i < this._previouslyBound.length; i++) {
+				for (var i = 0; this._previouslyBound &amp;&amp; i &lt; this._previouslyBound.length; i++) {
 	                this._previouslyBound[i].element.off(this._previouslyBound[i].eventName, this._previouslyBound[i].func);
 	            };
 	            this._clearArray(this._previouslyBound);
@@ -221,7 +248,7 @@ define(["jquery", "./object", "./string"], function($, jerk, stringUtil) {
             var self = this;
             // var $el = this.autoRender ? $(this.domNode) : this.$el;
             //in case this gets run twice, we'll clear previous binds
-            for (var i = 0; this._previouslyBound && i < this._previouslyBound.length; i++) {
+            for (var i = 0; this._previouslyBound &amp;&amp; i &lt; this._previouslyBound.length; i++) {
                 this._previouslyBound[i].element.off(this._previouslyBound[i].eventName, this._previouslyBound[i].func);
             };
             this._previouslyBound = [];
@@ -245,7 +272,7 @@ define(["jquery", "./object", "./string"], function($, jerk, stringUtil) {
 			
 			var rep = this.renderTemplate(represent);
 			
-			if (this.domNode && rep) {
+			if (this.domNode &amp;&amp; rep) {
 				rep = $(rep);
 
 				this.domNode = $(this.domNode);
@@ -264,7 +291,7 @@ define(["jquery", "./object", "./string"], function($, jerk, stringUtil) {
 			
 
 			
-			if (this.parent && this.parent.childRepresented) {
+			if (this.parent &amp;&amp; this.parent.childRepresented) {
 				this.parent.childRepresented(this);
 			}
 			this.renderingComplete = true;
@@ -281,7 +308,7 @@ define(["jquery", "./object", "./string"], function($, jerk, stringUtil) {
 		_stripPrivates: function() {
 			var o = {};
 			for (prop in  this) {
-				if ($.inArray(prop, this._privates) < 0) {
+				if ($.inArray(prop, this._privates) &lt; 0) {
 					if (!$.isFunction(this.prop)) {
 						o[prop] = this.representValue(prop);
 					}
@@ -293,11 +320,33 @@ define(["jquery", "./object", "./string"], function($, jerk, stringUtil) {
 		representValue: function(key) {
 			var funcName = stringUtil.createMethodName(["represent", key]);
 			
-			if (this[funcName] && $.isFunction(this[funcName])) {
+			if (this[funcName] &amp;&amp; $.isFunction(this[funcName])) {
 				return this[funcName].apply(this, arguments);
 			}
 			return this[key];
 		}
 		
 	});
-});
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="deviceDetector.html">responsive/deviceDetector</a></li></ul><h3>Classes</h3><ul><li><a href="canjswidget.html">responsive/canjswidget</a></li><li><a href="router.html">responsive/router</a></li><li><a href="statefulview.html">responsive/statefulview</a></li><li><a href="object.html">widget/object</a></li><li><a href="represent.html">widget/represent</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha3</a> on Mon Dec 30 2013 15:00:34 GMT-0600 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

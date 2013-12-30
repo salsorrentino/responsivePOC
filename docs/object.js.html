@@ -1,4 +1,31 @@
-define(["jquery", "./string"], function($, stringUtil) {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: widget/object.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: widget/object.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>define(["jquery", "./string"], function($, stringUtil) {
 	/**
 		represent 
 		
@@ -23,7 +50,7 @@ define(["jquery", "./string"], function($, stringUtil) {
 				this.domNode.data("widget", this);
 				this.srcNode = this.domNode;
 			}
-			for (var i = 0; i < this.__constructorChain.length; i++) {
+			for (var i = 0; i &lt; this.__constructorChain.length; i++) {
 				this.__constructorChain[i].apply(this, arguments);
 			}
 			
@@ -37,7 +64,7 @@ define(["jquery", "./string"], function($, stringUtil) {
 			if (this._postWidgetInit) {
 				this._postWidgetInit();
 			}
-			if (this.parent && this.parent.addChild) {
+			if (this.parent &amp;&amp; this.parent.addChild) {
 				this.parent.addChild(this);
 			}
 			// var self = this;
@@ -69,7 +96,7 @@ define(["jquery", "./string"], function($, stringUtil) {
 	jerk.inherit = function(proto, ext) {
 		proto._supers = [];
 		if (ext == null) ext = [];
-		ext = ext && $.isArray(ext) ? ext : [ext];
+		ext = ext &amp;&amp; $.isArray(ext) ? ext : [ext];
 		ext.unshift(jerk._baseClass); 
 		var target = {};
 		var x;
@@ -91,7 +118,7 @@ define(["jquery", "./string"], function($, stringUtil) {
 				no need to put that init in the constuctor chain. would actually create problems as all objects oin this system
 				have the same constructor.
 			*/
-			if (x.__isWidgetized !== true && x.constructor.name !== 'Object') {
+			if (x.__isWidgetized !== true &amp;&amp; x.constructor.name !== 'Object') {
 				// console.log('adding to __constructorChain:', x);
 				target.__constructorChain.push(x)
 			}
@@ -100,7 +127,7 @@ define(["jquery", "./string"], function($, stringUtil) {
 			if the member is a function, get it ready for inherited (super) calls
 		*/
 		for (prop in proto) {
-			if (prop != "super" && prop != "_supers" && $.isFunction(proto[prop])) {
+			if (prop != "super" &amp;&amp; prop != "_supers" &amp;&amp; $.isFunction(proto[prop])) {
 				proto[prop]._nomen = prop;
 				proto[prop]._supers = proto._supers;
 			}
@@ -148,7 +175,7 @@ define(["jquery", "./string"], function($, stringUtil) {
 				
 				requireComplete(val, def, domNode, false, onComplete, null);
 				count++;
-				if (onComplete && ((count == total) || forceComplete)) {
+				if (onComplete &amp;&amp; ((count == total) || forceComplete)) {
 					onComplete();
 				}
 			});
@@ -257,7 +284,7 @@ define(["jquery", "./string"], function($, stringUtil) {
 	};
 	//not ready for prime time. do not use this method
 	jerk.connect = function(obj, funcName, method, context) {
-		if (obj[funcName] && $.isFunction(obj[funcName])) {
+		if (obj[funcName] &amp;&amp; $.isFunction(obj[funcName])) {
 
 			if (obj[funcName].__beenConnected !== true) {
 				var oldFunc = obj[funcName];
@@ -290,7 +317,7 @@ define(["jquery", "./string"], function($, stringUtil) {
 	},
 	
 	jerk.declare = function(extensions, body) {
-		if (extensions && (body == null || body == undefined)) {
+		if (extensions &amp;&amp; (body == null || body == undefined)) {
 			body = extensions;
 			extensions = [];
 		}
@@ -308,7 +335,7 @@ define(["jquery", "./string"], function($, stringUtil) {
 		var overrideableFunctions = function() {};
 		overrideableFunctions.prototype = {
 			_clearArray: function(a) {
-				while (a && a.length) {
+				while (a &amp;&amp; a.length) {
 	            	a.pop();
 	            }
 			},
@@ -340,7 +367,7 @@ define(["jquery", "./string"], function($, stringUtil) {
 						$(this).off(this.__method_connections__[i])
 					};
 				}
-				for (var i = 0; this.children && i < this.children.length; i++) {
+				for (var i = 0; this.children &amp;&amp; i &lt; this.children.length; i++) {
 					var child = this.children[i]
 					if ($.isFunction(child.destroy())) {
 						child.destroy();
@@ -369,9 +396,9 @@ define(["jquery", "./string"], function($, stringUtil) {
 				return;
 			}
 			var self = this;
-			for (var i = 0; i < caller._supers.length; i++) {
+			for (var i = 0; i &lt; caller._supers.length; i++) {
 				var fn = caller._supers[i][name]; 
-				if (fn && $.isFunction(fn) && !fn._skipInheritance) {
+				if (fn &amp;&amp; $.isFunction(fn) &amp;&amp; !fn._skipInheritance) {
 					return fn.apply(this, args);
 				}
 			}
@@ -380,7 +407,7 @@ define(["jquery", "./string"], function($, stringUtil) {
 
 		myWidget.extend = function (mixins, body) {
 			var ext = [myWidget];
-			if (mixins && (body == null || body == undefined)) {
+			if (mixins &amp;&amp; (body == null || body == undefined)) {
 				body = mixins;
 				mixins = [];
 			}
@@ -394,4 +421,26 @@ define(["jquery", "./string"], function($, stringUtil) {
 	jerk.declare.parse = jerkify;
 	return jerk.declare;	
 	
-});
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="deviceDetector.html">responsive/deviceDetector</a></li></ul><h3>Classes</h3><ul><li><a href="canjswidget.html">responsive/canjswidget</a></li><li><a href="router.html">responsive/router</a></li><li><a href="statefulview.html">responsive/statefulview</a></li><li><a href="object.html">widget/object</a></li><li><a href="represent.html">widget/represent</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha3</a> on Mon Dec 30 2013 15:00:34 GMT-0600 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

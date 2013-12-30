@@ -1,0 +1,20 @@
+{
+	"opts": {
+		"destination": "../docs",
+		"recurse": true,
+		"verbose": true
+	},
+	"source": {
+		"include": ["../src/js/lib/"],
+		"exclude":["../src/js/lib/can.js",
+					"../src/js/lib/can.min.js",
+					"../src/js/lib/jquery-1.10.2.min.js",
+					"../src/js/lib/jquery.mobile-1.4.0-rc.1.min.js",
+					"../src/js/lib/jquery.tools.min.js",
+					"../src/js/lib/moment.js",
+					"../src/js/lib/path.js",
+					"../src/js/lib/require/require.js",
+					"../src/js/lib/require/text.js"],
+		"excludePattern": "(^|\\/|\\\\)_|can\/"
+	}
+}

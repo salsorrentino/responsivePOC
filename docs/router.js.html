@@ -1,4 +1,31 @@
-define(['jquery', 'widget/object', 'pathjs'], function($, object, pathjs) {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: responsive/router.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: responsive/router.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>define(['jquery', 'widget/object', 'pathjs'], function($, object, pathjs) {
 	
 	var isPushState = history.pushState != null;
 	var singleton = null;
@@ -10,13 +37,13 @@ define(['jquery', 'widget/object', 'pathjs'], function($, object, pathjs) {
 		
 		@class responsive/router
 		@example
-		<html>
-		<body>
-			<div data-object="responsive/router" id="router" 
-				data-object-opt-home="/search"></div>
+		&lt;html>
+		&lt;body>
+			&lt;div data-object="responsive/router" id="router" 
+				data-object-opt-home="/search">&lt;/div>
 			...
-		</body>
-		</html>
+		&lt;/body>
+		&lt;/html>
 	*/
 	var router = object(/** @lends responsive/router */{
 		/** 
@@ -141,12 +168,12 @@ define(['jquery', 'widget/object', 'pathjs'], function($, object, pathjs) {
 		},
 
 		_removeEmptyFirstIndex: function(a) {
-			if (a.length && a[0] === "") a.shift();
+			if (a.length &amp;&amp; a[0] === "") a.shift();
 			return a;
 		},
 
 		_isVariable: function(s) {
-			return s.length && s.substr(0,1) === ':';
+			return s.length &amp;&amp; s.substr(0,1) === ':';
 		},
 
 		_getVarName: function(s) {
@@ -205,27 +232,27 @@ define(['jquery', 'widget/object', 'pathjs'], function($, object, pathjs) {
 				var req = self._removeEmptyFirstIndex( s[0].split("/") );
 				var opt = self._removeEmptyFirstIndex( s.length > 1 ? s[1].split(")")[0].split("/") : [] );
 				// console.log(req, opt, order);
-				var wildCard = (req && req.length) ? req[req.length - 1] == self.wildCard : false;
-				//var optWildCard = (!wildCard opt && opt.length) ? opt[opt.length - 1] == "*" : false;
+				var wildCard = (req &amp;&amp; req.length) ? req[req.length - 1] == self.wildCard : false;
+				//var optWildCard = (!wildCard opt &amp;&amp; opt.length) ? opt[opt.length - 1] == "*" : false;
 				var matchLen = 0;
-				for (var i = 0; i < order.length; i++, matchLen++) {
-					if (  !wildCard && (req.length + opt.length !== order.length)  ) {
+				for (var i = 0; i &lt; order.length; i++, matchLen++) {
+					if (  !wildCard &amp;&amp; (req.length + opt.length !== order.length)  ) {
 						//move on to next component
 						break;
 					}
 					var isVar = self._isVariable( order[i] );
-					if (i < req.length) {
+					if (i &lt; req.length) {
 						if (req[i] == self.wildCard) {
 							//move on to next component
 							break;
 						}
 						var isViewVar = self._isVariable( req[i] );
-						if (!isVar && !isViewVar) {
+						if (!isVar &amp;&amp; !isViewVar) {
 							if (order[i] != req[i]) {
 								//move on to next component
 								break;
 							}
-						} else if (isVar && !isViewVar) {
+						} else if (isVar &amp;&amp; !isViewVar) {
 							if (params[self._getVarName(order[i])] != req[i]) {
 								//move on to next component
 								break;
@@ -238,8 +265,8 @@ define(['jquery', 'widget/object', 'pathjs'], function($, object, pathjs) {
 						}
 					}
 				};
-				if (matchLen < req.length 
-						&& req[matchLen] != self.wildCard) {
+				if (matchLen &lt; req.length 
+						&amp;&amp; req[matchLen] != self.wildCard) {
 					return true;	
 				}
 				satisfied = true;
@@ -250,7 +277,7 @@ define(['jquery', 'widget/object', 'pathjs'], function($, object, pathjs) {
 
 		unregisterView: function(view) {
 			var restOfViews = [];
-			for (var i = 0; i < this.allViews.length; i++) {
+			for (var i = 0; i &lt; this.allViews.length; i++) {
 				if (this.allViews[i] !== view) restOfViews.push(this.allViews[i]);
 			};
 			this.allViews = restOfViews;
@@ -261,7 +288,7 @@ define(['jquery', 'widget/object', 'pathjs'], function($, object, pathjs) {
 				clearTimeout(this._completionCheck);
 			}
 			var isComplete = true;
-			for (var i = 0; i < viewsWithState.length; i++) {
+			for (var i = 0; i &lt; viewsWithState.length; i++) {
 				if (!viewsWithState[i].isComplete()) {
 					isComplete = false;
 					break;
@@ -301,13 +328,13 @@ define(['jquery', 'widget/object', 'pathjs'], function($, object, pathjs) {
 			@instance
 		*/
 		registerView: function(view) {
-			if (this.allViews.indexOf(view) < 0) this.allViews.push(view);
+			if (this.allViews.indexOf(view) &lt; 0) this.allViews.push(view);
 			if (view.routes) {
 				var routes = $.isFunction(view.routes) ? view.routes() : view.routes;
 				var self = this;
 				$.each(routes, function(index, route) {
 					if (route != self.allRoutes 
-						&& route.indexOf("/*") == (route.length - 2)) {
+						&amp;&amp; route.indexOf("/*") == (route.length - 2)) {
 						route = route.substring(0, route.length - 2);
 					}
 
@@ -340,17 +367,39 @@ define(['jquery', 'widget/object', 'pathjs'], function($, object, pathjs) {
 		@memberof responsive/router
 		@static
 		@example
-		<html>
-		<body>
-			<div data-object="responsive/router" id="router" 
-				data-object-opt-home="/search"></div>
+		&lt;html>
+		&lt;body>
+			&lt;div data-object="responsive/router" id="router" 
+				data-object-opt-home="/search">&lt;/div>
 			...
-		</body>
-		</html>
+		&lt;/body>
+		&lt;/html>
 	*/
 	function getInstance() {
 		return singleton;
 	}
 	router.getInstance = getInstance;
 	return router;
-});
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="deviceDetector.html">responsive/deviceDetector</a></li></ul><h3>Classes</h3><ul><li><a href="canjswidget.html">responsive/canjswidget</a></li><li><a href="router.html">responsive/router</a></li><li><a href="statefulview.html">responsive/statefulview</a></li><li><a href="object.html">widget/object</a></li><li><a href="represent.html">widget/represent</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha3</a> on Mon Dec 30 2013 15:00:34 GMT-0600 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

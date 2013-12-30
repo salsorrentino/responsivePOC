@@ -52,7 +52,10 @@ define(['jquery', 'widget/object', "./deviceDetector", './responder'], function(
 			$(document.body).removeClass("rspLoading");
 			$(document).trigger("pageparsed");
 		},
-
+		
+		/*
+			
+		*/
 		respond: function($node) {
 			$("body").addClass("rspLoading");
 			this.device = this.deviceDetector.currentDevice();
@@ -77,8 +80,15 @@ define(['jquery', 'widget/object', "./deviceDetector", './responder'], function(
 			$.each(a, function(index, el) {
 				self.styleSheetResponse($(el));
 			});
+			/*
+				parseContent: inherited from responder.
+				delete nodes that are not applicable for this device
+			*/
 			this.parseContent(this.device, $node);
 			
+			/*
+				if we're jqm, let's parse and start decorating where we can, otherwise just parse
+			*/
 			if ( this.jqMobileDevices[this.deviceDetector.currentDevice()]) {
 				require(["jquerymobile"], function() {
 					object.parse($node, function() {
