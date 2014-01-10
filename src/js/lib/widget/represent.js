@@ -1,10 +1,9 @@
-define(["jquery", "./object", "./string"], function($, jerk, stringUtil) {
+define(["jquery", "./declare", "./string"], function($, jerk, stringUtil) {
 	
 	/**
-		represent 
-
-		@class widget/represent
-		@extends widget/object
+		@constructor widget/represent
+		@param {WidgetOptions} options
+		@augments widget/object
 	*/
 	return jerk([],{
 		_templater: null,

@@ -1,4 +1,4 @@
-define(['widget/object', 'responsive/statefulview'], function(object,view) {
+define(['widget/declare', 'responsive/statefulview'], function(object,view) {
 	return object([view], {
 		template: "<a href='{{href}}' data-bind-event='click: linkClicked'>{{{content}}}</a>",
 		borrow: "",

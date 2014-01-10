@@ -1,4 +1,4 @@
-define(['jquery', 'widget/object', 'responsive/statefulview'], function($, object, view) {
+define(['jquery', 'widget/declare', 'responsive/statefulview'], function($, object, view) {
 	return object([view], {
 		template: "<div>{{{content}}}</div>",
 		target: null,

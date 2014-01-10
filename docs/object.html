@@ -39,22 +39,66 @@
     
         
 <dt>
-    <h4 class="name" id="widget/object"><span class="type-signature"></span>new widget/object<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="widget/object"><span class="type-signature"></span>new widget/object<span class="signature">(options)</span><span class="type-signature"></span></h4>
     
     
 </dt>
 <dd>
     
     
-    <div class="description">
-        represent
-    </div>
-    
 
     
     
     
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#WidgetOptions">WidgetOptions</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
     
     
     
@@ -80,7 +124,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="object.js.html">widget/object.js</a>, <a href="object.js.html#line2">line 2</a>
+        <a href="object.js.html">widget/object.js</a>, <a href="object.js.html#line8">line 8</a>
     </li></ul></dd>
     
     
@@ -121,6 +165,512 @@
     
     
     
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="destroy"><span class="type-signature"></span>destroy<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        destroy the object, performing any necessary cleanup.
+				when overriding this method, be sure to call <a href="object.html#inherited">this.inherited(arguments)</a>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="object.js.html">widget/object.js</a>, <a href="object.js.html#line382">line 382</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>
+object.extend({
+	destroy: function() {
+		
+		//empty some list member
+		while(this.myList &amp;&amp; this.myList.length) {
+			this.myList.pop();
+		}
+
+		this.inherited(arguments);
+	}
+});
+
+</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="extend"><span class="type-signature"></span>extend<span class="signature">(<span class="optional">mixins</span>, body)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        a convenience method for extending a given object. all derivitive classes have this method.
+			is not typically called on the instance itself, but rather from the prototype returned from the declaration as in the example.
+			a simple shortcut to requiring widget/object as well as the class you wish to extend.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Argument</th>
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>mixins</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">array</span>
+
+
+            
+            </td>
+            
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+                    
+                
+                    
+                
+                </td>
+            
+            
+            
+            
+            <td class="description last">mixins, optional</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>body</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+            
+            
+                <td class="attributes">
+                
+                    
+                
+                    
+                
+                </td>
+            
+            
+            
+            
+            <td class="description last">the implemntation</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="object.js.html">widget/object.js</a>, <a href="object.js.html#line468">line 468</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>define(['some/widget'], function(widget) {
+	return widget.extend([mixin], {
+		// implementation
+	});
+})
+
+//or 
+
+define(['some/widget', 'some/mixin'], function(widget, mixin) {
+	return widget.extend([mixin], {
+		// implementation
+	});
+})
+
+//long form
+define(['widget/declare', 'some/widget', 'some/other/mixin'], function(declare, widget, mixin) {
+	return declare([widget, mixin], {
+		// implementation
+	});
+})
+
+</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="genUniqueId"><span class="type-signature"></span>genUniqueId<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        a convience method for when an dom id is needed.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="object.js.html">widget/object.js</a>, <a href="object.js.html#line331">line 331</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    the id.
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">string</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="inherited"><span class="type-signature"></span>inherited<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="object.js.html">widget/object.js</a>, <a href="object.js.html#line412">line 412</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="trigger"><span class="type-signature"></span>trigger<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        a convenience method. calls jQuery.trigger with the instance as the context, such as:
+				$(this).trigger('eventname', args...);
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="object.js.html">widget/object.js</a>, <a href="object.js.html#line357">line 357</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
     
     
     
@@ -135,13 +685,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="deviceDetector.html">responsive/deviceDetector</a></li></ul><h3>Classes</h3><ul><li><a href="canjswidget.html">responsive/canjswidget</a></li><li><a href="router.html">responsive/router</a></li><li><a href="statefulview.html">responsive/statefulview</a></li><li><a href="object.html">widget/object</a></li><li><a href="represent.html">widget/represent</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="deviceDetector.html">responsive/deviceDetector</a></li></ul><h3>Classes</h3><ul><li><a href="canjswidget.html">responsive/canjswidget</a></li><li><a href="router.html">responsive/router</a></li><li><a href="statefulview.html">responsive/statefulview</a></li><li><a href="object.html">widget/object</a></li><li><a href="represent.html">widget/represent</a></li></ul><h3>Global</h3><ul><li><a href="global.html#widget/declare">widget/declare</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha3</a> on Mon Dec 30 2013 15:01:43 GMT-0600 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha3</a> on Sat Jan 04 2014 19:47:41 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

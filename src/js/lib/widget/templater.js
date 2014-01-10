@@ -1,4 +1,4 @@
-define(["jquery", "./object", "mustache"], function($, jerk, mustache) {
+define(["jquery", "./declare", "mustache"], function($, jerk, mustache) {
 	return jerk({
 		renderer: mustache,
 		templateString: "",

@@ -1,4 +1,4 @@
-define(['jquery', 'widget/object', 'jquerytools'], function($, object) {
+define(['jquery', 'widget/declare', 'jquerytools'], function($, object) {
 	return object({
 		template: "<div class='simple-overlay'>{{{content}}}</div>",
 		modal: false,

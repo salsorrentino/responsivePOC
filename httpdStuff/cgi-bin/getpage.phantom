@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "Content-type: text/html\n\n";
+./phantomjs --load-images=false  --debug=false getpage.js 'http://localhost' ${QUERY_STRING}
+

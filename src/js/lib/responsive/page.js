@@ -1,4 +1,4 @@
-define(['jquery', 'widget/object', "./deviceDetector", './responder'], function($, object, deviceDetector, responder) {
+define(['jquery', 'widget/declare', "./deviceDetector", './responder'], function($, object, deviceDetector, responder) {
 
 	var responder = object([responder],{
 		

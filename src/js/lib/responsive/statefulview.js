@@ -1,4 +1,4 @@
-define(["jquery", "widget/object", "./canjswidget","./router", './responder'], function($, object, widget, router, responder) {
+define(["jquery", "widget/declare", "./canjswidget","./router", './responder'], function($, object, widget, router, responder) {
 	var __represents = 0;
 	var __completed = 0;
 
@@ -15,8 +15,10 @@ define(["jquery", "widget/object", "./canjswidget","./router", './responder'], f
 	};
 	/**
 		a view that responds to url hash changes. works in conjunction with {@link responsive/router responsive/router}
-
-		@class responsive/statefulview
+		
+		@constructor responsive/statefulview
+		@param {WidgetOptions} options
+		
 		@example
 		define(['responsive/statefulview', 'text!mytemplate.html'], function(view, template) {
 			return view.extend({
@@ -212,7 +214,7 @@ define(["jquery", "widget/object", "./canjswidget","./router", './responder'], f
 
 			@param route {string} - the current route being evaluated by the router
 			@param params {object} - the current route parameters, used in building the url hash
-
+			
 			@instance
 		*/
 		lostState: function(route, params) {
@@ -261,7 +263,7 @@ define(["jquery", "widget/object", "./canjswidget","./router", './responder'], f
 		/**
 			overrides method from represent.js 
 			registers the view with the router,
-			and signals that it's done being instanciated
+			and signals that it's done being instantiated
 			@instance
 		*/
 		postRepresent: function() {

@@ -1,4 +1,4 @@
-define(['jquery', './deviceDetector', 'widget/object', 'widget/represent', 'can'], function($, deviceDetector, object, widget, can) {
+define(['jquery', './deviceDetector', 'widget/declare', 'widget/represent', 'can'], function($, deviceDetector, object, widget, can) {
 	/**
 		fulfils widget/represent. renders via can.view.mustache
 		utilizes live-binding by returnning a can.Map for it's representaion object

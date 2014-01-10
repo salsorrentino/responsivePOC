@@ -1,4 +1,4 @@
-define(['jquery', 'widget/object'], function($, object) {
+define(['jquery', 'widget/declare'], function($, object) {
 	return object([], {
 		responsiveAttr: "data-responds-to",
 		responsiveSelector: "[data-responds-to]",

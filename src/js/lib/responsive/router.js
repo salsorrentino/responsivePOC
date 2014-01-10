@@ -1,4 +1,4 @@
-define(['jquery', 'widget/object', 'pathjs'], function($, object, pathjs) {
+define(['jquery', 'widget/declare', 'pathjs'], function($, object, pathjs) {
 	
 	var isPushState = history.pushState != null;
 	var singleton = null;

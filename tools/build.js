@@ -22,6 +22,7 @@
             //nested dependencies.
             include: [
                       'text',
+                      'widget/declare',
                       'responsive/canjswidget',
                       'responsive/page',
                       'responsive/router',

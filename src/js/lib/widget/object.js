@@ -1,8 +1,13 @@
 define(["jquery", "./string"], function($, stringUtil) {
 	/**
-		represent 
-		
-		@class widget/object
+		@typedef {object} WidgetOptions
+		@property {(Node|jQuery)} [domNode] - the dom node which this object will be representing
+		@property {any} [otherOptions...] - implementation specific config options
+	*/
+
+	/**
+		@constructor widget/object
+		@param {WidgetOptions} options
 	*/
 
 	var jerk = {};
@@ -14,7 +19,7 @@ define(["jquery", "./string"], function($, stringUtil) {
 	jerk._baseClass.__isWidgetized = true;
 
 	jerk._baseClass.prototype = {
-		
+		/* the constructor */
 		_baseWidgetInit: function() {
 			
 			
@@ -49,7 +54,9 @@ define(["jquery", "./string"], function($, stringUtil) {
 			if (opts) {
 				// console.log("opts:", opts, this)
 				for (prop in opts) {
+					//can not override this method
 					if (prop == "inherited") continue;
+					//can or this member
 					if (prop == "_supers") continue;
 					this[prop] = opts[prop];
 				}
@@ -307,14 +314,24 @@ define(["jquery", "./string"], function($, stringUtil) {
 				
 		var overrideableFunctions = function() {};
 		overrideableFunctions.prototype = {
+			
 			_clearArray: function(a) {
 				while (a && a.length) {
 	            	a.pop();
 	            }
 			},
+
+			/**
+				a convience method for when an dom id is needed.
+
+				@returns {string} the id.
+				@memberof widget/object
+				@instance
+			*/
 			genUniqueId: function() {
 				return this.declared.split("/").join("_") + "_" + uniqueIdCnt++;
 			},
+
 
 			parseChildren: function() {
 				
@@ -329,11 +346,39 @@ define(["jquery", "./string"], function($, stringUtil) {
 					}, true);
 				});
 			},
+
+			/**
+				a convenience method. calls jQuery.trigger with the instance as the context, such as:
+				$(this).trigger('eventname', args...);
+
+				@memberof widget/object
+				@instance
+			*/
 			trigger: function() {
 				var context = $(this);
 				context.trigger.apply(context, arguments);
 			},
 
+			/**
+				destroy the object, performing any necessary cleanup.
+				when overriding this method, be sure to call {@link widget/object#inherited this.inherited(arguments)}
+				@example
+				
+				object.extend({
+					destroy: function() {
+						
+						//empty some list member
+						while(this.myList && this.myList.length) {
+							this.myList.pop();
+						}
+
+						this.inherited(arguments);
+					}
+				});
+				
+				@memberof widget/object
+				@instance
+			*/
 			destroy: function() {
 				if (this.__method_connections__) {
 					for (var i = this.__method_connections__.length - 1; i >= 0; i--) {
@@ -357,7 +402,14 @@ define(["jquery", "./string"], function($, stringUtil) {
 		}
 		extensions.unshift(overrideableFunctions);
 		jerk.inherit(myWidget.prototype, extensions);
-		myWidget.prototype.inherited = function(args) {
+
+		/**
+			
+
+			@memberof widget/object
+			@instance
+		*/
+		var inherited = function(args) {
 			var caller = args.callee;
 			/*
 				we have to attach the supers to the function itself
@@ -378,7 +430,42 @@ define(["jquery", "./string"], function($, stringUtil) {
 			return null;
 		}
 
-		myWidget.extend = function (mixins, body) {
+		myWidget.prototype.inherited = inherited;
+
+		/**
+			a convenience method for extending a given object. all derivitive classes have this method.
+			is not typically called on the instance itself, but rather from the prototype returned from the declaration as in the example.
+			a simple shortcut to requiring widget/object as well as the class you wish to extend.
+
+			@example
+			define(['some/widget'], function(widget) {
+				return widget.extend([mixin], {
+					// implementation
+				});
+			})
+
+			//or 
+
+			define(['some/widget', 'some/mixin'], function(widget, mixin) {
+				return widget.extend([mixin], {
+					// implementation
+				});
+			})
+			
+			//long form
+			define(['widget/declare', 'some/widget', 'some/other/mixin'], function(declare, widget, mixin) {
+				return declare([widget, mixin], {
+					// implementation
+				});
+			})
+
+			@memberof widget/object
+			@instance
+
+			@param [mixins] {array} - mixins, optional
+			@param body {object} - the implemntation
+		*/
+		var extend = function (mixins, body) {
 			var ext = [myWidget];
 			if (mixins && (body == null || body == undefined)) {
 				body = mixins;
@@ -387,11 +474,13 @@ define(["jquery", "./string"], function($, stringUtil) {
 			ext.push.apply(ext, mixins);
 			return jerk.declare(ext, body);
 		}
+		myWidget.extend = extend;
+
 		myWidget.connect = jerk.connect;
 		return myWidget;
 		
 	};
 	jerk.declare.parse = jerkify;
-	return jerk.declare;	
+	return jerk;	
 	
 });
