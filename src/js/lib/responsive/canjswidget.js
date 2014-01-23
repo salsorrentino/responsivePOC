@@ -95,7 +95,7 @@ define(['jquery', './deviceDetector', 'widget/declare', 'widget/represent', 'can
 			var helpers = this.getHelpers();
 			var proxied = {};
 			for(prop in helpers) {
-				proxied[prop] = this.g(helpers[prop]);
+				proxied[prop] = this.helperProxy(helpers[prop]);
 			}
 			return proxied;
 		},

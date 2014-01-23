@@ -1,4 +1,4 @@
-define(['./object'], function(objet) {
+define(['./object'], function(object) {
 	/**
 		@function widget/declare
 	*/
